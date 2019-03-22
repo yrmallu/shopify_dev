@@ -1,0 +1,28 @@
+<h2> Order Details: </h2>
+
+<%= form_for :order, url: "/details" do |f| %>
+  Order: <%= f.text_field :order_id, value: @order.try(:id) %> <br><br>
+  <h3> Tracking Code: </h3>
+  <% if @order.try(:fulfillments).present? %>
+    <% fulfillment = @order.try(:fulfillments).first %>
+    Tracking Code<%= f.text_field :tracking_number, value: fulfillment.tracking_number %> <br><br>
+  <% else %>
+    <h5> No fulfillment available for this order </h5>
+  <% end %>
+  <h3> Shipping Address: </h3>
+  <% if @order.try(:shipping_address).present? %>
+    <% order = @order.try(:shipping_address).attributes %>
+    First Name<%= f.text_field :first_name, value: order[:first_name] %> <br><br>
+    Last Name<%= f.text_field :last_name, value: order[:last_name] %> <br><br>
+    Phone<%= f.text_field :phone, value: order[:phone] %> <br><br>
+    Address 1<%= f.text_area :address1, value: order[:address1] %> <br><br>
+    Address 2<%= f.text_area :address2, value: order[:address2] %> <br><br>
+    City<%= f.text_field :city, value: order[:city] %> <br><br>
+    Province<%= f.text_field :province, value: order[:province] %> <br><br>
+    Country<%= f.text_field :country, value: order[:country] %> <br><br>
+    Zip<%= f.text_field :zip, value: order[:zip] %> <br><br>
+  <% else %>
+    <h5> No shipping address available for this order </h5>
+  <% end %>
+  <%= f.submit%>
+<% end  %>

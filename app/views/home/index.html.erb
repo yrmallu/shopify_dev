@@ -1,0 +1,44 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Home" });
+    });
+  </script>
+<% end %>
+<%= javascript_include_tag 'application' %>
+<h2>Orders</h2>
+
+<ul>
+  <% @orders.each do |order| %>
+    <li><%= link_to order.name, "https://#{@shop_session.url}/admin/orders/#{order.id}", target: "_blank" %>   <%= link_to "Edit", "orders/#{order.id}"%></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<h2>Customers</h2>
+
+<ul>
+  <% @customers.each do |customer| %>
+    <li><%= link_to customer.email, "https://#{@shop_session.url}/admin/customers/#{customer.id}", target: "_blank" %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<h2>Profit Chart for <%= Date.today.to_s(:long) %></h2>
+<p> (Time Zone is in UTC) </p>
+
+<%= line_chart profit_details_path %>
+
+<hr>
+
+<h2>Products</h2>
+
+<ul>
+  <% @products.each do |product| %>
+    <li><%= link_to product.title, "https://#{@shop_session.url}/admin/products/#{product.id}", target: "_blank" %></li>
+  <% end %>
+</ul>
+
+<hr>
