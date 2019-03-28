@@ -1,0 +1,10 @@
+<h2>Products</h2>
+
+ <ul>
+  <% @products.each do |product| %>
+    <li><%= link_to product.title, "https://#{@shop_session.url}/admin/products/#{product.id}", target: "_blank" %></li>
+  <% end %>
+</ul>
+
+ <hr>
+<%= link_to "Back", root_path %>

@@ -1,0 +1,10 @@
+<h2>Customers</h2>
+
+ <ul>
+  <% @customers.each do |customer| %>
+    <li><%= link_to customer.email, "https://#{@shop_session.url}/admin/customers/#{customer.id}", target: "_blank" %></li>
+  <% end %>
+</ul>
+
+ <hr>
+<%= link_to "Back", root_path %> 

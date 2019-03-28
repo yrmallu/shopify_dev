@@ -1,6 +1,6 @@
 <h2> Order Details: </h2>
 
-<%= form_for :order, url: "/details" do |f| %>
+<%= form_for @order, url: order_path(@order) do |f| %>
   Order: <%= f.text_field :order_id, value: @order.try(:id) %> <br><br>
   <h3> Tracking Code: </h3>
   <% if @order.try(:fulfillments).present? %>

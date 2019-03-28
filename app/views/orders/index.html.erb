@@ -1,0 +1,9 @@
+<h2>Orders</h2>
+
+ <ul>
+  <% @orders.each do |order| %>
+    <li><%= link_to order.name, "https://#{@shop_session.url}/admin/orders/#{order.id}", target: "_blank" %>  <%= link_to "Edit", edit_order_path(order.id) %></li>
+<% end %>
+</ul>
+<hr>
+<%= link_to "Back", root_path %>
